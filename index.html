@@ -1,720 +1,1040 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Satyam Awasthi — Frontend Developer</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Geist:wght@300;400;500&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Satyam Awasthi — Frontend Developer</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Geist:wght@300;400;500&family=Geist+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  :root {
-    --bg: #fafaf8;
-    --white: #ffffff;
-    --ink: #141412;
-    --ink2: #6b6b67;
-    --ink3: #a8a8a4;
-    --rule: #e8e8e4;
-    --hi: #2563eb;
-    --hi-bg: #eff6ff;
-    --ff-display: 'Playfair Display', serif;
-    --ff-body: 'Geist', sans-serif;
-    --ff-mono: 'Geist Mono', monospace;
-  }
+    :root {
+      --bg: #fafaf8;
+      --white: #ffffff;
+      --ink: #141412;
+      --ink2: #6b6b67;
+      --ink3: #a8a8a4;
+      --rule: #e8e8e4;
+      --hi: #2563eb;
+      --hi-bg: #eff6ff;
+      --ff-display: 'Playfair Display', serif;
+      --ff-body: 'Geist', sans-serif;
+      --ff-mono: 'Geist Mono', monospace;
+    }
 
-  html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
-  body {
-    background: var(--bg);
-    color: var(--ink);
-    font-family: var(--ff-body);
-    font-size: 15px;
-    line-height: 1.65;
-  }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--ff-body);
+      font-size: 15px;
+      line-height: 1.65;
+    }
 
-  a { color: inherit; text-decoration: none; }
 
-  /* NAV */
-  nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.25rem 3rem;
-    border-bottom: 1px solid var(--rule);
-    background: rgba(250, 250, 248, 0.95);
-    backdrop-filter: blur(8px);
-    position: sticky;
-    top: 0;
-    z-index: 50;
-  }
-  .nav-name {
-    font-family: var(--ff-mono);
-    font-size: 13px;
-    color: var(--ink);
-    letter-spacing: 0.04em;
-  }
-  .nav-links { display: flex; gap: 2.5rem; }
-  .nav-links a {
-    font-size: 13px;
-    color: var(--ink2);
-    letter-spacing: 0.02em;
-    transition: color 0.15s;
-  }
-  .nav-links a:hover { color: var(--ink); }
-  .nav-avail {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-family: var(--ff-mono);
-    font-size: 11px;
-    color: var(--ink2);
-  }
-  .dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #22c55e;
-  }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-  /* HERO */
-  .hero {
-    max-width: 1080px;
-    margin: 0 auto;
-    padding: 6rem 3rem 5rem;
-    display: grid;
-    grid-template-columns: 1fr 340px;
-    gap: 4rem;
-    align-items: end;
-  }
-  .hero-label {
-    font-family: var(--ff-mono);
-    font-size: 11px;
-    color: var(--ink3);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-  }
-  .hero-name {
-    font-family: var(--ff-display);
-    font-size: clamp(52px, 7vw, 84px);
-    font-weight: 400;
-    line-height: 1.0;
-    color: var(--ink);
-    margin-bottom: 0.15em;
-  }
-  .hero-name em { font-style: italic; color: var(--ink2); }
-  .hero-role {
-    font-family: var(--ff-mono);
-    font-size: 13px;
-    color: var(--ink2);
-    letter-spacing: 0.06em;
-    margin-bottom: 2rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid var(--rule);
-  }
-  .hero-bio {
-    font-size: 16px;
-    color: var(--ink2);
-    line-height: 1.75;
-    font-weight: 300;
-    max-width: 480px;
-    margin-bottom: 2rem;
-  }
-  .hero-actions { display: flex; gap: 12px; }
-  .btn-dark {
-    background: var(--ink);
-    color: #fafaf8;
-    padding: 10px 24px;
-    font-family: var(--ff-mono);
-    font-size: 12px;
-    letter-spacing: 0.04em;
-    border-radius: 3px;
-    transition: opacity 0.2s;
-    display: inline-block;
-  }
-  .btn-dark:hover { opacity: 0.8; }
-  .btn-ghost {
-    border: 1px solid var(--rule);
-    color: var(--ink2);
-    padding: 10px 24px;
-    font-family: var(--ff-mono);
-    font-size: 12px;
-    letter-spacing: 0.04em;
-    border-radius: 3px;
-    transition: border-color 0.2s, color 0.2s;
-    display: inline-block;
-  }
-  .btn-ghost:hover { border-color: var(--ink2); color: var(--ink); }
+    /* NAV */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 3rem;
+      border-bottom: 1px solid var(--rule);
+      background: rgba(250, 250, 248, 0.95);
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
 
-  .stat-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
-  .hero-stat-block {
-    border: 1px solid var(--rule);
-    border-radius: 8px;
-    background: var(--white);
-    padding: 1.5rem;
-  }
-  .stat-wide { margin-top: 1rem; }
-  .stat-n {
-    font-family: var(--ff-display);
-    font-size: 40px;
-    font-weight: 400;
-    color: var(--ink);
-    line-height: 1;
-  }
-  .stat-n em { font-style: italic; }
-  .stat-desc {
-    font-size: 12px;
-    color: var(--ink3);
-    margin-top: 4px;
-    line-height: 1.4;
-  }
+    .nav-name {
+      font-family: var(--ff-mono);
+      font-size: 13px;
+      color: var(--ink);
+      letter-spacing: 0.04em;
+    }
 
-  /* DIVIDER */
-  .divider {
-    height: 1px;
-    background: var(--rule);
-    max-width: 1080px;
-    margin: 0 auto;
-  }
-
-  /* SECTIONS */
-  section {
-    padding: 5rem 3rem;
-    max-width: 1080px;
-    margin: 0 auto;
-  }
-  .sec-head {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-    margin-bottom: 3.5rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--rule);
-  }
-  .sec-num {
-    font-family: var(--ff-mono);
-    font-size: 11px;
-    color: var(--ink3);
-    letter-spacing: 0.1em;
-  }
-  .sec-title {
-    font-family: var(--ff-display);
-    font-size: clamp(28px, 4vw, 38px);
-    font-weight: 400;
-    color: var(--ink);
-  }
-
-  /* ABOUT */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-  }
-  .about-p {
-    font-size: 15px;
-    color: var(--ink2);
-    line-height: 1.8;
-    margin-bottom: 1rem;
-    font-weight: 300;
-  }
-  .about-p strong { color: var(--ink); font-weight: 500; }
-  .skill-group { margin-bottom: 1.75rem; }
-  .skill-group-label {
-    font-family: var(--ff-mono);
-    font-size: 10px;
-    color: var(--ink3);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: 0.75rem;
-  }
-  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
-  .chip {
-    font-family: var(--ff-mono);
-    font-size: 11px;
-    padding: 4px 10px;
-    border: 1px solid var(--rule);
-    border-radius: 3px;
-    color: var(--ink2);
-    background: var(--white);
-  }
-  .chip.key {
-    border-color: #c7d7f8;
-    background: var(--hi-bg);
-    color: #1d4ed8;
-  }
-
-  /* PROJECTS */
-  .proj-list { display: flex; flex-direction: column; }
-  .proj-item {
-    display: grid;
-    grid-template-columns: 80px 1fr auto;
-    gap: 2.5rem;
-    align-items: start;
-    padding: 2.25rem 0;
-    border-bottom: 1px solid var(--rule);
-  }
-  .proj-item:last-child { border-bottom: none; }
-  .proj-num {
-    font-family: var(--ff-mono);
-    font-size: 11px;
-    color: var(--ink3);
-    padding-top: 3px;
-  }
-  .proj-type {
-    font-family: var(--ff-mono);
-    font-size: 10px;
-    color: var(--ink3);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
-  }
-  .proj-title {
-    font-family: var(--ff-display);
-    font-size: 22px;
-    font-weight: 400;
-    margin-bottom: 0.5rem;
-    color: var(--ink);
-  }
-  .proj-desc {
-    font-size: 14px;
-    color: var(--ink2);
-    line-height: 1.7;
-    margin-bottom: 1rem;
-    font-weight: 300;
-    max-width: 560px;
-  }
-  .proj-chips { display: flex; flex-wrap: wrap; gap: 5px; }
-  .proj-chip {
-    font-family: var(--ff-mono);
-    font-size: 10px;
-    padding: 3px 8px;
-    border: 1px solid var(--rule);
-    border-radius: 3px;
-    color: var(--ink3);
-  }
-  .proj-link {
-    font-family: var(--ff-mono);
-    font-size: 11px;
-    color: var(--hi);
-    display: inline-block;
-    margin-top: 10px;
-  }
-  .proj-right { text-align: right; white-space: nowrap; }
-  .proj-metric { margin-bottom: 0.75rem; }
-  .proj-metric-val {
-    font-family: var(--ff-display);
-    font-size: 28px;
-    font-weight: 400;
-    color: var(--ink);
-    line-height: 1;
-  }
-  .proj-metric-val em { font-style: italic; }
-  .proj-metric-key {
-    font-family: var(--ff-mono);
-    font-size: 10px;
-    color: var(--ink3);
-    margin-top: 2px;
-  }
-
-  /* EXPERIENCE */
-  .exp-list { display: flex; flex-direction: column; }
-  .exp-item {
-    display: grid;
-    grid-template-columns: 220px 1fr;
-    gap: 3rem;
-    padding: 2.5rem 0;
-    border-bottom: 1px solid var(--rule);
-  }
-  .exp-item:last-child { border-bottom: none; }
-  .exp-meta-period {
-    font-family: var(--ff-mono);
-    font-size: 11px;
-    color: var(--ink3);
-    letter-spacing: 0.06em;
-    margin-bottom: 0.5rem;
-  }
-  .exp-meta-co { font-size: 14px; color: var(--ink2); font-weight: 300; }
-  .exp-meta-loc {
-    font-family: var(--ff-mono);
-    font-size: 10px;
-    color: var(--ink3);
-    margin-top: 2px;
-  }
-  .exp-role {
-    font-family: var(--ff-display);
-    font-size: 20px;
-    font-weight: 400;
-    margin-bottom: 0.75rem;
-  }
-  .exp-desc {
-    font-size: 14px;
-    color: var(--ink2);
-    line-height: 1.75;
-    font-weight: 300;
-    margin-bottom: 1rem;
-  }
-  .exp-ul { list-style: none; display: flex; flex-direction: column; gap: 5px; }
-  .exp-ul li {
-    font-size: 13px;
-    color: var(--ink2);
-    padding-left: 1.25rem;
-    position: relative;
-    font-weight: 300;
-  }
-  .exp-ul li::before {
-    content: '—';
-    position: absolute;
-    left: 0;
-    color: var(--ink3);
-    font-size: 11px;
-    top: 3px;
-  }
-
-  /* CONTACT BAND */
-  .contact-band {
-    background: #141412;
-    padding: 5rem 3rem;
-  }
-  .contact-inner {
-    max-width: 1080px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-  }
-  .contact-headline {
-    font-family: var(--ff-display);
-    font-size: clamp(40px, 5vw, 60px);
-    font-weight: 400;
-    color: #fafaf8;
-    line-height: 1.1;
-  }
-  .contact-headline em { font-style: italic; color: #888880; }
-  .contact-links { display: flex; flex-direction: column; }
-  .contact-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.1rem 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    color: inherit;
-  }
-  .contact-row:last-child { border-bottom: none; }
-  .c-label {
-    font-family: var(--ff-mono);
-    font-size: 11px;
-    color: #888880;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    min-width: 80px;
-  }
-  .c-val { font-size: 14px; color: #d4d4d0; font-weight: 300; flex: 1; padding: 0 1rem; }
-  .c-arr { color: #888880; font-size: 14px; }
-
-  /* FOOTER */
-  footer {
-    padding: 1.75rem 3rem;
-    border-top: 1px solid var(--rule);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: var(--bg);
-  }
-  .footer-l { font-family: var(--ff-mono); font-size: 11px; color: var(--ink3); }
-  .footer-r { font-family: var(--ff-mono); font-size: 11px; color: var(--ink3); }
-
-  /* RESPONSIVE */
-  @media (max-width: 768px) {
-    nav { padding: 1rem 1.25rem; }
-    .nav-links { display: none; }
-    .hero {
-      grid-template-columns: 1fr;
-      padding: 3.5rem 1.25rem 3rem;
+    .nav-links {
+      display: flex;
       gap: 2.5rem;
     }
-    .hero-right {
+
+    .nav-links a {
+      font-size: 13px;
+      color: var(--ink2);
+      letter-spacing: 0.02em;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover {
+      color: var(--ink);
+    }
+
+    .nav-avail {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--ff-mono);
+      font-size: 11px;
+      color: var(--ink2);
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #22c55e;
+    }
+
+    /* HERO */
+    .hero {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 6rem 3rem 5rem;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 340px;
+      gap: 4rem;
+      align-items: end;
+    }
+
+    .hero-label {
+      font-family: var(--ff-mono);
+      font-size: 11px;
+      color: var(--ink3);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-name {
+      font-family: var(--ff-display);
+      font-size: clamp(52px, 7vw, 84px);
+      font-weight: 400;
+      line-height: 1.0;
+      color: var(--ink);
+      margin-bottom: 0.15em;
+    }
+
+    .hero-name em {
+      font-style: italic;
+      color: var(--ink2);
+    }
+
+    .hero-role {
+      font-family: var(--ff-mono);
+      font-size: 13px;
+      color: var(--ink2);
+      letter-spacing: 0.06em;
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .hero-bio {
+      font-size: 16px;
+      color: var(--ink2);
+      line-height: 1.75;
+      font-weight: 300;
+      max-width: 480px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-actions {
+      display: flex;
       gap: 12px;
     }
-    .stat-wide { margin-top: 0; }
-    section { padding: 3.5rem 1.25rem; }
-    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-    .proj-item {
-      grid-template-columns: 50px 1fr;
+
+    .btn-dark {
+      background: var(--ink);
+      color: #fafaf8;
+      padding: 10px 24px;
+      font-family: var(--ff-mono);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      border-radius: 3px;
+      transition: opacity 0.2s;
+      display: inline-block;
+    }
+
+    .btn-dark:hover {
+      opacity: 0.8;
+    }
+
+    .btn-ghost {
+      border: 1px solid var(--rule);
+      color: var(--ink2);
+      padding: 10px 24px;
+      font-family: var(--ff-mono);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      border-radius: 3px;
+      transition: border-color 0.2s, color 0.2s;
+      display: inline-block;
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--ink2);
+      color: var(--ink);
+    }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 1rem;
     }
-    .proj-right { display: none; }
-    .exp-item { grid-template-columns: 1fr; gap: 0.25rem; }
-    .contact-band { padding: 3.5rem 1.25rem; }
-    .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-    footer { padding: 1.25rem; flex-direction: column; gap: 4px; text-align: center; }
-  }
-</style>
+
+    .hero-stat-block {
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      background: var(--white);
+      padding: 1.5rem;
+    }
+
+    .stat-wide {
+      margin-top: 1rem;
+    }
+
+    .stat-n {
+      font-family: var(--ff-display);
+      font-size: 40px;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1;
+    }
+
+    .stat-n em {
+      font-style: italic;
+    }
+
+    .stat-desc {
+      font-size: 12px;
+      color: var(--ink3);
+      margin-top: 4px;
+      line-height: 1.4;
+    }
+
+    /* DIVIDER */
+    .divider {
+      height: 1px;
+      background: var(--rule);
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 5rem 3rem;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .sec-head {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 3.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .sec-num {
+      font-family: var(--ff-mono);
+      font-size: 11px;
+      color: var(--ink3);
+      letter-spacing: 0.1em;
+    }
+
+    .sec-title {
+      font-family: var(--ff-display);
+      font-size: clamp(28px, 4vw, 38px);
+      font-weight: 400;
+      color: var(--ink);
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+    }
+
+    .about-p {
+      font-size: 15px;
+      color: var(--ink2);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+      font-weight: 300;
+    }
+
+    .about-p strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .skill-group {
+      margin-bottom: 1.75rem;
+    }
+
+    .skill-group-label {
+      font-family: var(--ff-mono);
+      font-size: 10px;
+      color: var(--ink3);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .chip {
+      font-family: var(--ff-mono);
+      font-size: 11px;
+      padding: 4px 10px;
+      border: 1px solid var(--rule);
+      border-radius: 3px;
+      color: var(--ink2);
+      background: var(--white);
+    }
+
+    .chip.key {
+      border-color: #c7d7f8;
+      background: var(--hi-bg);
+      color: #1d4ed8;
+    }
+
+    /* PROJECTS */
+    .proj-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .proj-item {
+      display: grid;
+      grid-template-columns: 80px 1fr auto;
+      gap: 2.5rem;
+      align-items: start;
+      padding: 2.25rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .proj-item:last-child {
+      border-bottom: none;
+    }
+
+    .proj-num {
+      font-family: var(--ff-mono);
+      font-size: 11px;
+      color: var(--ink3);
+      padding-top: 3px;
+    }
+
+    .proj-type {
+      font-family: var(--ff-mono);
+      font-size: 10px;
+      color: var(--ink3);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .proj-title {
+      font-family: var(--ff-display);
+      font-size: 22px;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+      color: var(--ink);
+    }
+
+    .proj-desc {
+      font-size: 14px;
+      color: var(--ink2);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+      font-weight: 300;
+      max-width: 560px;
+    }
+
+    .proj-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .proj-chip {
+      font-family: var(--ff-mono);
+      font-size: 10px;
+      padding: 3px 8px;
+      border: 1px solid var(--rule);
+      border-radius: 3px;
+      color: var(--ink3);
+    }
+
+    .proj-link {
+      font-family: var(--ff-mono);
+      font-size: 11px;
+      color: var(--hi);
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    .proj-right {
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .proj-metric {
+      margin-bottom: 0.75rem;
+    }
+
+    .proj-metric-val {
+      font-family: var(--ff-display);
+      font-size: 28px;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1;
+    }
+
+    .proj-metric-val em {
+      font-style: italic;
+    }
+
+    .proj-metric-key {
+      font-family: var(--ff-mono);
+      font-size: 10px;
+      color: var(--ink3);
+      margin-top: 2px;
+    }
+
+    /* EXPERIENCE */
+    .exp-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .exp-item {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 3rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .exp-item:last-child {
+      border-bottom: none;
+    }
+
+    .exp-meta-period {
+      font-family: var(--ff-mono);
+      font-size: 11px;
+      color: var(--ink3);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.5rem;
+    }
+
+    .exp-meta-co {
+      font-size: 14px;
+      color: var(--ink2);
+      font-weight: 300;
+    }
+
+    .exp-meta-loc {
+      font-family: var(--ff-mono);
+      font-size: 10px;
+      color: var(--ink3);
+      margin-top: 2px;
+    }
+
+    .exp-role {
+      font-family: var(--ff-display);
+      font-size: 20px;
+      font-weight: 400;
+      margin-bottom: 0.75rem;
+    }
+
+    .exp-desc {
+      font-size: 14px;
+      color: var(--ink2);
+      line-height: 1.75;
+      font-weight: 300;
+      margin-bottom: 1rem;
+    }
+
+    .exp-ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .exp-ul li {
+      font-size: 13px;
+      color: var(--ink2);
+      padding-left: 1.25rem;
+      position: relative;
+      font-weight: 300;
+    }
+
+    .exp-ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--ink3);
+      font-size: 11px;
+      top: 3px;
+    }
+
+    /* CONTACT BAND */
+    .contact-band {
+      background: #141412;
+      padding: 5rem 3rem;
+    }
+
+    .contact-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .contact-headline {
+      font-family: var(--ff-display);
+      font-size: clamp(40px, 5vw, 60px);
+      font-weight: 400;
+      color: #fafaf8;
+      line-height: 1.1;
+    }
+
+    .contact-headline em {
+      font-style: italic;
+      color: #888880;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      color: inherit;
+    }
+
+    .contact-row:last-child {
+      border-bottom: none;
+    }
+
+    .c-label {
+      font-family: var(--ff-mono);
+      font-size: 11px;
+      color: #888880;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      min-width: 80px;
+    }
+
+    .c-val {
+      font-size: 14px;
+      color: #d4d4d0;
+      font-weight: 300;
+      flex: 1;
+      padding: 0 1rem;
+    }
+
+    .c-arr {
+      color: #888880;
+      font-size: 14px;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 1.75rem 3rem;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--bg);
+    }
+
+    .footer-l {
+      font-family: var(--ff-mono);
+      font-size: 11px;
+      color: var(--ink3);
+    }
+
+    .footer-r {
+      font-family: var(--ff-mono);
+      font-size: 11px;
+      color: var(--ink3);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav {
+        padding: 1rem 1.25rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 3.5rem 1.25rem 3rem;
+        gap: 2.5rem;
+      }
+
+      .hero-right {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      .stat-wide {
+        margin-top: 0;
+      }
+
+      section {
+        padding: 3.5rem 1.25rem;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .proj-item {
+        grid-template-columns: 50px 1fr;
+        gap: 1rem;
+      }
+
+      .proj-right {
+        display: none;
+      }
+
+      .exp-item {
+        grid-template-columns: 1fr;
+        gap: 0.25rem;
+      }
+
+      .contact-band {
+        padding: 3.5rem 1.25rem;
+      }
+
+      .contact-inner {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      footer {
+        padding: 1.25rem;
+        flex-direction: column;
+        gap: 4px;
+        text-align: center;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-name">satyam awasthi</div>
-  <div class="nav-links">
-    <a href="#about">About</a>
-    <a href="#projects">Work</a>
-    <a href="#experience">Experience</a>
-    <a href="#contact">Contact</a>
-  </div>
-  <div class="nav-avail">
-    <div class="dot"></div>
-    Open to work
-  </div>
-</nav>
-
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-left">
-    <div class="hero-label">Frontend Developer · India</div>
-    <h1 class="hero-name">Satyam<br><em>Awasthi</em></h1>
-    <div class="hero-role">React.js · Next.js · TypeScript</div>
-    <p class="hero-bio">I build fast, scalable B2B SaaS interfaces — from CRM dashboards to asset management platforms. Nearly 4 years shipping real products, real impact.</p>
-    <div class="hero-actions">
-      <a href="mailto:awsthisatyam992@gmail.com" class="btn-dark">Get in touch</a>
-      <a href="#projects" class="btn-ghost">See my work</a>
+  <!-- NAV -->
+  <nav>
+    <div class="nav-name">satyam awasthi</div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#projects">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
     </div>
-  </div>
-  <div class="hero-right">
-    <div class="stat-row">
-      <div class="hero-stat-block">
-        <div class="stat-n">4<em>yrs</em></div>
-        <div class="stat-desc">Professional experience</div>
-      </div>
-      <div class="hero-stat-block">
-        <div class="stat-n">5+</div>
-        <div class="stat-desc">Products shipped</div>
+    <div class="nav-avail">
+      <div class="dot"></div>
+      Open to work
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-label">Frontend Developer · India</div>
+      <h1 class="hero-name">Satyam<br><em>Awasthi</em></h1>
+      <div class="hero-role">React.js · Next.js · TypeScript</div>
+      <p class="hero-bio">I build fast, scalable B2B SaaS interfaces — from CRM dashboards to asset management
+        platforms. Nearly 4 years shipping real products, real impact.</p>
+      <div class="hero-actions">
+        <a href="mailto:awsthisatyam992@gmail.com" class="btn-dark">Get in touch</a>
+        <a href="#projects" class="btn-ghost">See my work</a>
       </div>
     </div>
-    <div class="hero-stat-block stat-wide">
-      <div class="stat-n">30%</div>
-      <div class="stat-desc">Average performance improvement across projects</div>
-    </div>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="sec-head">
-    <span class="sec-num">01</span>
-    <h2 class="sec-title">About</h2>
-  </div>
-  <div class="about-grid">
-    <div>
-      <p class="about-p">I'm a frontend developer focused on <strong>B2B SaaS products</strong> — the kind that handle real business logic like CRM pipelines, inventory flows, and asset tracking across multiple locations.</p>
-      <p class="about-p">Currently at <strong>Axonas Consulting</strong>, leading frontend architecture for two live platforms. Before that, I built three web apps and a HubSpot payment integration at <strong>CEDCOSS Technologies</strong> in Lucknow.</p>
-      <p class="about-p">I care about <strong>clean component architecture, thoughtful API integration, and interfaces that just work</strong>. I'm equally comfortable diving into a design system or debugging a race condition.</p>
-    </div>
-    <div>
-      <div class="skill-group">
-        <div class="skill-group-label">Core stack</div>
-        <div class="chips">
-          <span class="chip key">React.js</span>
-          <span class="chip key">Next.js</span>
-          <span class="chip key">TypeScript</span>
-          <span class="chip key">Redux Toolkit</span>
-          <span class="chip key">React Query</span>
-          <span class="chip key">Tailwind CSS</span>
+    <div class="hero-right">
+      <div class="stat-row">
+        <div class="hero-stat-block">
+          <div class="stat-n">4<em>yrs</em></div>
+          <div class="stat-desc">Professional experience</div>
+        </div>
+        <div class="hero-stat-block">
+          <div class="stat-n">5+</div>
+          <div class="stat-desc">Products shipped</div>
         </div>
       </div>
-      <div class="skill-group">
-        <div class="skill-group-label">Also use</div>
-        <div class="chips">
-          <span class="chip">MUI</span>
-          <span class="chip">Ant Design</span>
-          <span class="chip">Styled Components</span>
-          <span class="chip">Axios</span>
-          <span class="chip">Context API</span>
-          <span class="chip">Figma</span>
-          <span class="chip">Git</span>
-          <span class="chip">Postman</span>
-        </div>
+      <div class="hero-stat-block stat-wide">
+        <div class="stat-n">30%</div>
+        <div class="stat-desc">Average performance improvement across projects</div>
       </div>
     </div>
   </div>
-</section>
 
-<div class="divider"></div>
+  <div class="divider"></div>
 
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="sec-head">
-    <span class="sec-num">02</span>
-    <h2 class="sec-title">Selected work</h2>
-  </div>
-  <div class="proj-list">
-
-    <div class="proj-item">
-      <div class="proj-num">001</div>
-      <div class="proj-body">
-        <div class="proj-type">SaaS · CRM · Inventory · Live</div>
-        <div class="proj-title">Dataalay — Service & CRM Platform</div>
-        <p class="proj-desc">Led frontend architecture for a full-featured B2B platform. Built modules for CRM analytics, lead management, sales tracking, purchase management, and role-based access control.</p>
-        <div class="proj-chips">
-          <span class="proj-chip">React.js</span>
-          <span class="proj-chip">TypeScript</span>
-          <span class="proj-chip">Redux Toolkit</span>
-          <span class="proj-chip">Tailwind CSS</span>
-          <span class="proj-chip">REST APIs</span>
-        </div>
-        <a href="https://srvc.dataalay.com" class="proj-link" target="_blank">srvc.dataalay.com →</a>
-      </div>
-      <div class="proj-right">
-        <div class="proj-metric">
-          <div class="proj-metric-val">30<em>%</em></div>
-          <div class="proj-metric-key">Load time reduction</div>
-        </div>
-        <div class="proj-metric">
-          <div class="proj-metric-val">30<em>%</em></div>
-          <div class="proj-metric-key">API efficiency gain</div>
-        </div>
-      </div>
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2 class="sec-title">About</h2>
     </div>
-
-    <div class="proj-item">
-      <div class="proj-num">002</div>
-      <div class="proj-body">
-        <div class="proj-type">SaaS · Asset Management · Live</div>
-        <div class="proj-title">MyAssets — Asset Tracking System</div>
-        <p class="proj-desc">Architected multi-location asset tracking with AMC, warranty, and repair management. Improved system performance through component architecture decisions and optimised data fetching patterns.</p>
-        <div class="proj-chips">
-          <span class="proj-chip">Next.js</span>
-          <span class="proj-chip">TypeScript</span>
-          <span class="proj-chip">React Query</span>
-          <span class="proj-chip">MUI</span>
-        </div>
-        <a href="https://myassets.dataalay.com" class="proj-link" target="_blank">myassets.dataalay.com →</a>
-      </div>
-      <div class="proj-right">
-        <div class="proj-metric">
-          <div class="proj-metric-val">25<em>%</em></div>
-          <div class="proj-metric-key">Performance gain</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="proj-item">
-      <div class="proj-num">003</div>
-      <div class="proj-body">
-        <div class="proj-type">Integration · Payments · HubSpot</div>
-        <div class="proj-title">FormPay — HubSpot Payment Integration</div>
-        <p class="proj-desc">Built a multi-gateway, multi-currency payment system for HubSpot CRM. Implemented recurring billing, dynamic payment forms, shareable links, and subscription management with tri-directional syncing.</p>
-        <div class="proj-chips">
-          <span class="proj-chip">Next.js</span>
-          <span class="proj-chip">JavaScript</span>
-          <span class="proj-chip">HubSpot API</span>
-          <span class="proj-chip">Payments</span>
-        </div>
-        <a href="https://formpay.martechapps.com" class="proj-link" target="_blank">formpay.martechapps.com →</a>
-      </div>
-      <div class="proj-right">
-        <div class="proj-metric">
-          <div class="proj-metric-val">20<em>%</em></div>
-          <div class="proj-metric-key">Engagement increase</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="sec-head">
-    <span class="sec-num">03</span>
-    <h2 class="sec-title">Experience</h2>
-  </div>
-  <div class="exp-list">
-
-    <div class="exp-item">
+    <div class="about-grid">
       <div>
-        <div class="exp-meta-period">Apr 2024 — Present</div>
-        <div class="exp-meta-co">Axonas Consulting</div>
-        <div class="exp-meta-loc">Remote</div>
+        <p class="about-p">I'm a frontend developer focused on <strong>B2B SaaS products</strong> — the kind that handle
+          real business logic like CRM pipelines, inventory flows, and asset tracking across multiple locations.</p>
+        <p class="about-p">Currently at <strong>Triumpany Robust Solutions</strong>, leading frontend architecture for
+          two live platforms. Before that, I built three web apps and a HubSpot payment integration at <strong>CEDCOSS
+            Technologies</strong> in Lucknow.</p>
+        <p class="about-p">I care about <strong>clean component architecture, thoughtful API integration, and interfaces
+            that just work</strong>. I'm equally comfortable diving into a design system or debugging a race condition.
+        </p>
       </div>
       <div>
-        <div class="exp-role">Frontend Developer</div>
-        <p class="exp-desc">Leading frontend architecture across multiple B2B SaaS products. Own the full development cycle from component design to production deployment.</p>
-        <ul class="exp-ul">
-          <li>Reduced page load times by 30% across SaaS platforms</li>
-          <li>Improved API handling efficiency by 30%</li>
-          <li>Built CRM, Inventory, Lead Management, and Access Control modules</li>
-          <li>Architected multi-location Asset Tracking with AMC & Warranty features</li>
-        </ul>
+        <div class="skill-group">
+          <div class="skill-group-label">Core stack</div>
+          <div class="chips">
+            <span class="chip key">React.js</span>
+            <span class="chip key">Next.js</span>
+            <span class="chip key">TypeScript</span>
+            <span class="chip key">Redux Toolkit</span>
+            <span class="chip key">React Query</span>
+            <span class="chip key">Tailwind CSS</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label">Also use</div>
+          <div class="chips">
+            <span class="chip">MUI</span>
+            <span class="chip">Ant Design</span>
+            <span class="chip">Styled Components</span>
+            <span class="chip">Axios</span>
+            <span class="chip">Context API</span>
+            <span class="chip">Figma</span>
+            <span class="chip">Git</span>
+            <span class="chip">Postman</span>
+          </div>
+        </div>
       </div>
     </div>
+  </section>
 
-    <div class="exp-item">
+  <div class="divider"></div>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2 class="sec-title">Selected work</h2>
+    </div>
+    <div class="proj-list">
+
+      <div class="proj-item">
+        <div class="proj-num">001</div>
+        <div class="proj-body">
+          <div class="proj-type">SaaS · CRM · Inventory · Live</div>
+          <div class="proj-title">Dataalay — Service & CRM Platform</div>
+          <p class="proj-desc">Led frontend architecture for a full-featured B2B platform. Built modules for CRM
+            analytics, lead management, sales tracking, purchase management, and role-based access control.</p>
+          <div class="proj-chips">
+            <span class="proj-chip">React.js</span>
+            <span class="proj-chip">TypeScript</span>
+            <span class="proj-chip">Redux Toolkit</span>
+            <span class="proj-chip">Tailwind CSS</span>
+            <span class="proj-chip">REST APIs</span>
+          </div>
+          <a href="https://srvc.dataalay.com" class="proj-link" target="_blank">srvc.dataalay.com →</a>
+        </div>
+        <div class="proj-right">
+          <div class="proj-metric">
+            <div class="proj-metric-val">30<em>%</em></div>
+            <div class="proj-metric-key">Load time reduction</div>
+          </div>
+          <div class="proj-metric">
+            <div class="proj-metric-val">30<em>%</em></div>
+            <div class="proj-metric-key">API efficiency gain</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-item">
+        <div class="proj-num">002</div>
+        <div class="proj-body">
+          <div class="proj-type">SaaS · Asset Management · Live</div>
+          <div class="proj-title">MyAssets — Asset Tracking System</div>
+          <p class="proj-desc">Architected multi-location asset tracking with AMC, warranty, and repair management.
+            Improved system performance through component architecture decisions and optimised data fetching patterns.
+          </p>
+          <div class="proj-chips">
+            <span class="proj-chip">Next.js</span>
+            <span class="proj-chip">TypeScript</span>
+            <span class="proj-chip">React Query</span>
+            <span class="proj-chip">MUI</span>
+          </div>
+          <a href="https://myassets.dataalay.com" class="proj-link" target="_blank">myassets.dataalay.com →</a>
+        </div>
+        <div class="proj-right">
+          <div class="proj-metric">
+            <div class="proj-metric-val">25<em>%</em></div>
+            <div class="proj-metric-key">Performance gain</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-item">
+        <div class="proj-num">003</div>
+        <div class="proj-body">
+          <div class="proj-type">Integration · Payments · HubSpot</div>
+          <div class="proj-title">FormPay — HubSpot Payment Integration</div>
+          <p class="proj-desc">Built a multi-gateway, multi-currency payment system for HubSpot CRM. Implemented
+            recurring billing, dynamic payment forms, shareable links, and subscription management with tri-directional
+            syncing.</p>
+          <div class="proj-chips">
+            <span class="proj-chip">Next.js</span>
+            <span class="proj-chip">JavaScript</span>
+            <span class="proj-chip">HubSpot API</span>
+            <span class="proj-chip">Payments</span>
+          </div>
+          <a href="https://formpay.martechapps.com" class="proj-link" target="_blank">formpay.martechapps.com →</a>
+        </div>
+        <div class="proj-right">
+          <div class="proj-metric">
+            <div class="proj-metric-val">20<em>%</em></div>
+            <div class="proj-metric-key">Engagement increase</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-item">
+        <div class="proj-num">004</div>
+        <div class="proj-body">
+          <div class="proj-type">CRM · Integrations</div>
+          <div class="proj-title">Corpburge — CRM Workflow Integrations</div>
+          <p class="proj-desc">
+            Implemented third-party service integrations for CRM workflows, enhancing data synchronization and
+            automation across business processes.
+          </p>
+          <div class="proj-chips">
+            <span class="proj-chip">React.js</span>
+            <span class="proj-chip">APIs</span>
+            <span class="proj-chip">Integrations</span>
+            <span class="proj-chip">Automation</span>
+          </div>
+          <a href="https://corpburge.com" class="proj-link" target="_blank">corpburge.com →</a>
+        </div>
+        <div class="proj-right"></div>
+      </div>
+
+      <div class="proj-item">
+        <div class="proj-num">005</div>
+        <div class="proj-body">
+          <div class="proj-type">E-commerce · HubSpot</div>
+          <div class="proj-title">Shopline — E-commerce Integration</div>
+          <p class="proj-desc">
+            Developed e-commerce frontend modules with optimized UI/UX, including product listings, cart management, and
+            checkout flows.
+          </p>
+          <div class="proj-chips">
+            <span class="proj-chip">Next.js</span>
+            <span class="proj-chip">JavaScript</span>
+            <span class="proj-chip">E-commerce</span>
+            <span class="proj-chip">UI/UX</span>
+          </div>
+          <a href="https://makewebbetter.com/hubspot-shopline-integration" class="proj-link" target="_blank">
+            shopline integration →
+          </a>
+        </div>
+        <div class="proj-right"></div>
+      </div>
+
+      <div class="proj-item">
+        <div class="proj-num">006</div>
+        <div class="proj-body">
+          <div class="proj-type">SaaS · Asset Management</div>
+          <div class="proj-title">MyAssets — Service Management Platform</div>
+          <p class="proj-desc">
+            Engineered service management features including request handling, structured user workflows, and real-time
+            status tracking.
+          </p>
+          <div class="proj-chips">
+            <span class="proj-chip">Next.js</span>
+            <span class="proj-chip">TypeScript</span>
+            <span class="proj-chip">React Query</span>
+            <span class="proj-chip">MUI</span>
+          </div>
+          <a href="https://myassets.dataalay.com" class="proj-link" target="_blank">myassets.dataalay.com →</a>
+        </div>
+        <div class="proj-right"></div>
+      </div>
+
+      <div class="proj-item">
+        <div class="proj-num">007</div>
+        <div class="proj-body">
+          <div class="proj-type">Corporate · Web</div>
+          <div class="proj-title">Vatsa Capital Ventures — Corporate Website</div>
+          <p class="proj-desc">
+            Designed and deployed a responsive corporate website with modern UI/UX principles, focusing on branding,
+            clarity, and performance optimization.
+          </p>
+          <div class="proj-chips">
+            <span class="proj-chip">React.js</span>
+            <span class="proj-chip">UI/UX</span>
+            <span class="proj-chip">Responsive</span>
+            <span class="proj-chip">Performance</span>
+          </div>
+          <a href="https://vatsacapitalventure.com" class="proj-link" target="_blank">vatsacapitalventure.com →</a>
+        </div>
+        <div class="proj-right"></div>
+      </div>
+
+      <div class="proj-item">
+        <div class="proj-num">008</div>
+        <div class="proj-body">
+          <div class="proj-type">Static · SEO</div>
+          <div class="proj-title">ByTRS — High Performance Website</div>
+          <p class="proj-desc">
+            Built a high-performance static website with clean design architecture and SEO-friendly structure for
+            improved discoverability and speed.
+          </p>
+          <div class="proj-chips">
+            <span class="proj-chip">Next.js</span>
+            <span class="proj-chip">SEO</span>
+            <span class="proj-chip">Performance</span>
+            <span class="proj-chip">Static Site</span>
+          </div>
+          <a href="https://www.bytrs.com" class="proj-link" target="_blank">bytrs.com →</a>
+        </div>
+        <div class="proj-right"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2 class="sec-title">Experience</h2>
+    </div>
+    <div class="exp-list">
+
+      <div class="exp-item">
+        <div>
+          <div class="exp-meta-period">Apr 2024 — Present</div>
+          <div class="exp-meta-co">Triumpany Robust Solutions</div>
+          <div class="exp-meta-loc">Remote</div>
+        </div>
+        <div>
+          <div class="exp-role">Frontend Developer</div>
+          <p class="exp-desc">Leading frontend architecture across multiple B2B SaaS products. Own the full development
+            cycle from component design to production deployment.</p>
+          <ul class="exp-ul">
+            <li>Reduced page load times by 30% across SaaS platforms</li>
+            <li>Improved API handling efficiency by 30%</li>
+            <li>Built CRM, Inventory, Lead Management, and Access Control modules</li>
+            <li>Architected multi-location Asset Tracking with AMC & Warranty features</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div>
+          <div class="exp-meta-period">Apr 2022 — Dec 2023</div>
+          <div class="exp-meta-co">CEDCOSS Technologies</div>
+          <div class="exp-meta-loc">Lucknow, India</div>
+        </div>
+        <div>
+          <div class="exp-role">Associate Software Engineer</div>
+          <p class="exp-desc">Built interactive web apps and pixel-perfect interfaces for SaaS products, collaborating
+            closely with design and product teams.</p>
+          <ul class="exp-ul">
+            <li>Engineered 3 Next.js web apps, increasing user engagement by 20%</li>
+            <li>Converted 5 UI/UX mockups to pixel-perfect responsive interfaces</li>
+            <li>Implemented multi-gateway, multi-currency payment flows for FormPay</li>
+            <li>Built subscription management with tri-directional CRM syncing</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <div class="contact-band" id="contact">
+    <div class="contact-inner">
       <div>
-        <div class="exp-meta-period">Apr 2022 — Dec 2023</div>
-        <div class="exp-meta-co">CEDCOSS Technologies</div>
-        <div class="exp-meta-loc">Lucknow, India</div>
+        <div class="contact-headline">Let's build<br>something<br><em>great.</em></div>
       </div>
-      <div>
-        <div class="exp-role">Associate Software Engineer</div>
-        <p class="exp-desc">Built interactive web apps and pixel-perfect interfaces for SaaS products, collaborating closely with design and product teams.</p>
-        <ul class="exp-ul">
-          <li>Engineered 3 Next.js web apps, increasing user engagement by 20%</li>
-          <li>Converted 5 UI/UX mockups to pixel-perfect responsive interfaces</li>
-          <li>Implemented multi-gateway, multi-currency payment flows for FormPay</li>
-          <li>Built subscription management with tri-directional CRM syncing</li>
-        </ul>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- CONTACT -->
-<div class="contact-band" id="contact">
-  <div class="contact-inner">
-    <div>
-      <div class="contact-headline">Let's build<br>something<br><em>great.</em></div>
-    </div>
-    <div class="contact-links">
-      <a href="mailto:awsthisatyam992@gmail.com" class="contact-row">
-        <span class="c-label">Email</span>
-        <span class="c-val">awsthisatyam992@gmail.com</span>
-        <span class="c-arr">→</span>
-      </a>
-      <a href="https://linkedin.com/in/satyamawasthi" target="_blank" class="contact-row">
-        <span class="c-label">LinkedIn</span>
-        <span class="c-val">linkedin.com/in/satyamawasthi</span>
-        <span class="c-arr">→</span>
-      </a>
-      <a href="tel:+919120778880" class="contact-row">
-        <span class="c-label">Phone</span>
-        <span class="c-val">+91 91207 78880</span>
-        <span class="c-arr">→</span>
-      </a>
-      <div class="contact-row">
-        <span class="c-label">Location</span>
-        <span class="c-val">India · Open to remote</span>
+      <div class="contact-links">
+        <a href="mailto:awsthisatyam992@gmail.com" class="contact-row">
+          <span class="c-label">Email</span>
+          <span class="c-val">awsthisatyam992@gmail.com</span>
+          <span class="c-arr">→</span>
+        </a>
+        <a href="https://linkedin.com/in/satyamawasthi" target="_blank" class="contact-row">
+          <span class="c-label">LinkedIn</span>
+          <span class="c-val">linkedin.com/in/satyamawasthi</span>
+          <span class="c-arr">→</span>
+        </a>
+        <a href="tel:+919120778880" class="contact-row">
+          <span class="c-label">Phone</span>
+          <span class="c-val">+91 91207 78880</span>
+          <span class="c-arr">→</span>
+        </a>
+        <div class="contact-row">
+          <span class="c-label">Location</span>
+          <span class="c-val">India · Open to remote</span>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-l">© 2025 Satyam Awasthi</div>
-  <div class="footer-r">React · Next.js · TypeScript</div>
-</footer>
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-l">© 2025 Satyam Awasthi</div>
+    <div class="footer-r">React · Next.js · TypeScript</div>
+  </footer>
 
 </body>
+
 </html>
